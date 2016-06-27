@@ -18,9 +18,9 @@ public class Register extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 	
-        String name = request.getParameter("name");
+        String name = request.getParameter("username");
         String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
+        String pass = request.getParameter("password");
         try{
         
         //loading drivers for mysql
@@ -38,9 +38,9 @@ public class Register extends HttpServlet {
         ps.setString(3, pass);
         int i=ps.executeUpdate();
         
-          if(i>0)
-          {
-            out.println("You are sucessfully registered");
+          if(i>0){
+        	  RequestDispatcher rs = request.getRequestDispatcher("welcome.html");
+        	  rs.include(request, response);
           }
         
         }
